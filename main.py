@@ -81,7 +81,7 @@ class Simulation:
                     self.automatonGrid[xpos][0] = 1
 
             ruleArray = [self.automaton.rule >> i & 1 for i in range(8)]
-            print(self.automaton.rule, self.automaton.width, ruleArray)
+            # print(self.automaton.rule, self.automaton.width, ruleArray)
 
             for row in range(1, self.height+1):
                 for col in range(0, self.width):
@@ -172,10 +172,10 @@ def main():
                 pygame.draw.rect(window, color, rectCoords)
 
                 if (sim.enemyGrid[row][col]):
-                    pygame.draw.rect(window, COLOR_PINK, rectCoords)
+                    pygame.draw.rect(window, COLOR_LIGHT_PINK, rectCoords)
 
                 if (row < sim.wall):
-                    pygame.draw.rect(window, COLOR_DARKER_PURPLE, rectCoords)
+                    pygame.draw.rect(window, COLOR_PINK, rectCoords)
 
 
     tick = 0
