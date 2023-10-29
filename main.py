@@ -35,6 +35,7 @@ class Simulation:
     automatonGrid: List[List[int]]
     automaton: Automaton
     cooldown: int
+    wall: int
 
     def __init__(self, gridWidth: int, gridHeight: int):
         self.width = gridWidth
@@ -43,6 +44,7 @@ class Simulation:
         self.enemyGrid = [[0 for _ in range(gridHeight + 1)] for _ in range(gridHeight + 1)]
         self.automatonGrid = [[0 for _ in range(gridHeight + 1)] for _ in range(gridHeight + 1)]
         self.cooldown = 0
+        self.wall = 5
 
     def tickSimulation(self, mousePos: None | Tuple[int, int], hasClicked: bool, tick: int):
         self.automatonGrid = [[0 for _ in range(self.width + 1)] for _ in range(self.height + 1)]
@@ -50,6 +52,17 @@ class Simulation:
             for col in range(1, self.width + 1):
                 for row in range(self.height + 1):
                     self.enemyGrid[col - 1][row] = self.enemyGrid[col][row]
+            
+            enemies = 0
+            for row in range(self.height + 1):
+                enemies += self.enemyGrid[self.wall - 1][row]
+
+            if (enemies != 0):
+                self.wall += 1
+            
+        self.enemyGrid[self.wall+1]
+
+
 
         if (tick % 2 == 0):
             if (random.random() > 0.5):
@@ -102,8 +115,29 @@ def printGrid(sim: Simulation):
 
 COLOR_WHITE = (255, 255, 255)
 COLOR_GREY = (30, 30, 30)
+COLOR_RED_GREY = (50, 30, 30)
 COLOR_RED = (255, 000, 000)
 COLOR_BLACK = (000, 000, 000)
+
+# ff8274
+COLOR_LIGHT_PINK = (255, 130, 116)
+# d53c6a
+COLOR_PINK = (213, 60, 106)
+
+#7c183c
+COLOR_DARK_PINK = (124, 24, 60)
+
+#460e2b
+COLOR_PURPLE = (70, 14, 43)
+
+#31051e
+COLOR_DARK_PURPLE = (49, 5, 30)
+
+#1f0510
+COLOR_DARKER_PURPLE = (31, 5, 16)
+
+#130208
+COLOR_DARKEST_PURPLE = (19, 2, 8)
 
 def main():
 
@@ -129,16 +163,19 @@ def main():
             for col in range(sim.height):
                 cellValue = sim.automatonGrid[row][col]
                 rectCoords = (row * cellWidth, col * cellHeight + headerHeight, cellWidth, cellWidth) 
-                color = COLOR_BLACK
+                color = COLOR_DARKEST_PURPLE
                 if cellValue:
                     if hasClicked:
-                        color = COLOR_WHITE
+                        color = COLOR_DARK_PINK 
                     else:
-                        color = COLOR_GREY
+                        color = COLOR_DARK_PURPLE
                 pygame.draw.rect(window, color, rectCoords)
 
                 if (sim.enemyGrid[row][col]):
-                    pygame.draw.rect(window, COLOR_RED, rectCoords)
+                    pygame.draw.rect(window, COLOR_PINK, rectCoords)
+
+                if (row < sim.wall):
+                    pygame.draw.rect(window, COLOR_DARKER_PURPLE, rectCoords)
 
 
     tick = 0
