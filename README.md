@@ -10,3 +10,12 @@ Preoccupied with the creation of [Lid Astray](https://averyhiebert.itch.io/lid-a
 A throwback to my [first Cellular Automata project](https://github.com/RyanSamman/ElementaryCellularAutomata/tree/master) years ago, your goal is to defend *The Automaton*, the source of your automatical power. Swarmed by a horde of bugs, you are gifted with a random Automaton to keep them at bay.
 
 ![The Wall](./the-wall.mov)
+
+## Installation
+
+To install the game, run the following:
+
+```shell
+pip install -r requirements.txt
+python main.py
+```
