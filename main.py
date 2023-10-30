@@ -144,8 +144,8 @@ def main():
     gridWidth = 50
     gridHeight = 50
 
-    cellWidth = 10
-    cellHeight = 10
+    cellWidth = 15
+    cellHeight = 15
 
     headerHeight =  0
     
@@ -166,7 +166,7 @@ def main():
                 color = COLOR_DARKEST_PURPLE
                 if cellValue:
                     if hasClicked:
-                        color = COLOR_DARK_PINK 
+                        color = COLOR_PINK 
                     else:
                         color = COLOR_DARK_PURPLE
                 pygame.draw.rect(window, color, rectCoords)
@@ -175,7 +175,7 @@ def main():
                     pygame.draw.rect(window, COLOR_LIGHT_PINK, rectCoords)
 
                 if (row < sim.wall):
-                    pygame.draw.rect(window, COLOR_PINK, rectCoords)
+                    pygame.draw.rect(window, COLOR_DARK_PINK, rectCoords)
 
 
     tick = 0
